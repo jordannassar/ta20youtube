@@ -3,6 +3,7 @@
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,6 @@ Route::get('/tag/{tag}', [PublicController::class, 'tag'])->name('public.tag');
 
 Route::get('/video/{video}', [PublicController::class, 'video'])->name('public.video');
 
-
 Route::middleware('auth')->group(function(){
     Route::get('/videos', [VideoController::class, 'index'])->name('videos.index');
     Route::get('/videos/create', [VideoController::class, 'create'])->name('videos.create');
@@ -31,9 +31,12 @@ Route::middleware('auth')->group(function(){
     Route::get('/videos/{video}/edit', [VideoController::class, 'edit'])->name('videos.edit');
     Route::post('/videos/{video}', [VideoController::class, 'update'])->name('videos.update');
     Route::get('/videos/{video}/delete', [VideoController::class, 'destroy'])->name('videos.destroy');
-
+    
     Route::get('/video/{video}/like', [LikeController::class, 'like'])->name('video.like');
-
+    
+    
+    Route::post('/video/{video_id}/comments', [CommentController::class, 'store'])->name('comments.store');
+//comments destroy
 });
 
 Route::get('/pages/page1', [PublicController::class, 'page1'])->name('public.page1');

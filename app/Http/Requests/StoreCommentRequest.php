@@ -13,7 +13,7 @@ class StoreCommentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,8 @@ class StoreCommentRequest extends FormRequest
     {
         return [
             //
+            'comment' => 'required',
+            'video_id' => 'required'
         ];
     }
 }
